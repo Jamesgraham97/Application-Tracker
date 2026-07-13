@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Job Application Clipper",
+  "version": "1.0.0",
+  "description": "Scrape and save job listings from LinkedIn, Indeed, and company pages directly to your Job Tracker.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://*.supabase.co/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.linkedin.com/*", "*://*.indeed.com/*", "*://*/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { 
   ArrowLeft, 
   MapPin, 
-  DollarSign, 
+  Euro, 
   Link as LinkIcon, 
   Calendar, 
   Clock, 
@@ -159,9 +159,9 @@ export default function ApplicationDetails() {
 
   const formatCurrency = (val?: number) => {
     if (val === undefined || val === null) return '';
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IE', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'EUR',
       maximumFractionDigits: 0
     }).format(val);
   };
@@ -327,7 +327,7 @@ export default function ApplicationDetails() {
                 {/* Salary */}
                 <div className="flex items-start gap-3">
                   <div className="p-2 rounded-lg bg-[#18181b] border border-[#27272a] text-zinc-400">
-                    <DollarSign className="h-4 w-4" />
+                    <Euro className="h-4 w-4" />
                   </div>
                   <div className="flex-1">
                     <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider block">Salary Range</span>
@@ -338,7 +338,7 @@ export default function ApplicationDetails() {
                             type="number"
                             value={editSalaryMin}
                             onChange={(e) => setEditSalaryMin(e.target.value === '' ? '' : Number(e.target.value))}
-                            placeholder="Min (e.g. 120000)"
+                            placeholder="Min (e.g. 80000)"
                             className="text-xs"
                           />
                           <span className="text-zinc-600 text-xs">—</span>
@@ -346,14 +346,14 @@ export default function ApplicationDetails() {
                             type="number"
                             value={editSalaryMax}
                             onChange={(e) => setEditSalaryMax(e.target.value === '' ? '' : Number(e.target.value))}
-                            placeholder="Max (e.g. 150000)"
+                            placeholder="Max (e.g. 110000)"
                             className="text-xs"
                           />
                         </div>
                         <Input
                           value={editSalaryText}
                           onChange={(e) => setEditSalaryText(e.target.value)}
-                          placeholder="Salary Notes (e.g. $120k base + bonus)"
+                          placeholder="Salary Notes (e.g. €85k base + pension)"
                           className="text-xs"
                         />
                       </div>

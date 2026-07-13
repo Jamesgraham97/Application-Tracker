@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { Briefcase, ArrowLeft, Plus, DollarSign, MapPin, Compass, Link as LinkIcon, HelpCircle } from 'lucide-react';
+import { Briefcase, ArrowLeft, Plus, Euro, MapPin, Compass, Link as LinkIcon, HelpCircle } from 'lucide-react';
 import { createApplication } from '../lib/dbService';
 import { ApplicationStatus, RemoteType } from '../types';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '../components/ui/Card';
@@ -231,13 +231,13 @@ export default function AddApplication() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 border-t border-[#27272a] pt-4">
               <div>
                 <Label htmlFor="salary-min" className="flex items-center gap-1.5">
-                  <DollarSign className="h-3 w-3 text-zinc-500" />
-                  Min Salary (Annual USD)
+                  <Euro className="h-3 w-3 text-zinc-500" />
+                  Min Salary (Annual EUR)
                 </Label>
                 <Input
                   id="salary-min"
                   type="number"
-                  placeholder="e.g. 120000"
+                  placeholder="e.g. 80000"
                   value={salaryMin}
                   onChange={(e) => setSalaryMin(e.target.value === '' ? '' : Number(e.target.value))}
                   disabled={isSubmitting}
@@ -246,13 +246,13 @@ export default function AddApplication() {
 
               <div>
                 <Label htmlFor="salary-max" className="flex items-center gap-1.5">
-                  <DollarSign className="h-3 w-3 text-zinc-500" />
-                  Max Salary (Annual USD)
+                  <Euro className="h-3 w-3 text-zinc-500" />
+                  Max Salary (Annual EUR)
                 </Label>
                 <Input
                   id="salary-max"
                   type="number"
-                  placeholder="e.g. 160000"
+                  placeholder="e.g. 110000"
                   value={salaryMax}
                   onChange={(e) => setSalaryMax(e.target.value === '' ? '' : Number(e.target.value))}
                   disabled={isSubmitting}
@@ -264,7 +264,7 @@ export default function AddApplication() {
                 <Input
                   id="salary-text"
                   type="text"
-                  placeholder="e.g. $130k base + stock options"
+                  placeholder="e.g. €85k base + pension"
                   value={salaryText}
                   onChange={(e) => setSalaryText(e.target.value)}
                   disabled={isSubmitting}

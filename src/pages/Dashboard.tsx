@@ -11,7 +11,7 @@ import {
   Clock, 
   XCircle, 
   TrendingUp, 
-  DollarSign, 
+  Euro, 
   Search, 
   ChevronUp, 
   ChevronDown, 
@@ -92,9 +92,9 @@ export default function Dashboard() {
 
   // Format currency
   const formatCurrency = (val: number) => {
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IE', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'EUR',
       maximumFractionDigits: 0
     }).format(val);
   };
@@ -257,12 +257,12 @@ export default function Dashboard() {
           <CardContent className="p-6 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <div className="p-3 rounded-lg bg-emerald-950/20 text-emerald-400 border border-emerald-900/40">
-                <DollarSign className="h-5 w-5" />
+                <Euro className="h-5 w-5" />
               </div>
               <div>
                 <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider block">Average Target Salary</span>
                 <span className="text-xl font-bold text-zinc-200 block mt-0.5">
-                  {averageSalary > 0 ? formatCurrency(averageSalary) : '$0.00'}
+                  {averageSalary > 0 ? formatCurrency(averageSalary) : '€0.00'}
                 </span>
               </div>
             </div>

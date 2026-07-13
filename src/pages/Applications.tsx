@@ -148,9 +148,9 @@ export default function Applications() {
 
   const formatCurrency = (val?: number) => {
     if (val === undefined || val === null) return '';
-    return new Intl.NumberFormat('en-US', {
+    return new Intl.NumberFormat('en-IE', {
       style: 'currency',
-      currency: 'USD',
+      currency: 'EUR',
       maximumFractionDigits: 0
     }).format(val);
   };
