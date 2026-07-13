@@ -1,0 +1,6 @@
+{
+  "name": "Job Tracker",
+  "description": "A modern, responsive dashboard to manage, search, and track your job applications directly with Supabase, featuring an offline-ready state, analytics, and browser-extension readiness.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
