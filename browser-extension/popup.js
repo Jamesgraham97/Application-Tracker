@@ -149,12 +149,12 @@ document.getElementById('btn-save').addEventListener('click', () => {
       applied_date: status !== 'Saved' ? new Date().toISOString().split('T')[0] : null,
       last_updated: new Date().toISOString(),
       created_at: new Date().toISOString(),
-      timeline: JSON.stringify([{
+      timeline: [{
         id: crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2),
         status: status,
         notes: `Application entered via Web Clipper`,
         createdAt: new Date().toISOString()
-      }])
+      }]
     };
 
     showStatus('Saving to Supabase...', 'success');
@@ -182,7 +182,14 @@ document.getElementById('btn-save').addEventListener('click', () => {
       } else {
         const errText = await response.text();
         console.error('Supabase save failed:', errText);
-        showStatus(`Database error: ${response.statusText}`, 'error');
+        let errorDetails = '';
+        try {
+          const parsed = JSON.parse(errText);
+          errorDetails = parsed.message || parsed.error || parsed.hint || errText;
+        } catch {
+          errorDetails = errText || response.statusText;
+        }
+        showStatus(`Database error: ${errorDetails}`, 'error');
       }
     } catch (err) {
       console.error('Save request failed:', err);
