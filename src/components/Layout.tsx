@@ -96,7 +96,7 @@ export default function Layout({ children }: LayoutProps) {
                 AC
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium text-white truncate">Alex Chen</p>
+                <p className="text-xs font-medium text-white truncate">James Graham</p>
                 <p className="text-[10px] text-zinc-500 truncate">Personal Workspace</p>
               </div>
             </div>
@@ -165,7 +165,7 @@ export default function Layout({ children }: LayoutProps) {
                     AC
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-xs font-medium text-white truncate">Alex Chen</p>
+                    <p className="text-xs font-medium text-white truncate">James Graham</p>
                     <p className="text-[10px] text-zinc-500 truncate">Personal Workspace</p>
                   </div>
                 </div>

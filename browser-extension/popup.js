@@ -89,7 +89,7 @@ function populateForm(data) {
 
 // Save Settings Event
 document.getElementById('btn-save-settings').addEventListener('click', () => {
-  const url = document.getElementById('sup_url').value.trim();
+  let url = document.getElementById('sup_url').value.trim();
   const key = document.getElementById('sup_key').value.trim();
 
   if (!url || !key) {
@@ -97,8 +97,16 @@ document.getElementById('btn-save-settings').addEventListener('click', () => {
     return;
   }
 
+  // Robust cleanup of the URL:
+  // 1. Remove trailing /rest/v1 or /rest/v1/ if pasted by accident
+  url = url.replace(/\/rest\/v1\/?$/, '');
+  // 2. Remove any remaining trailing slashes
+  url = url.replace(/\/+$/, '');
+
   chrome.storage.local.set({ supabaseUrl: url, supabaseKey: key }, () => {
     showStatus('Supabase settings saved successfully!', 'success');
+    // Update the input display with the cleaned URL
+    document.getElementById('sup_url').value = url;
     // Switch to Clip tab
     setTimeout(() => {
       document.getElementById('tab-clip').click();
@@ -109,14 +117,18 @@ document.getElementById('btn-save-settings').addEventListener('click', () => {
 // Save Application Event to Supabase REST API
 document.getElementById('btn-save').addEventListener('click', () => {
   chrome.storage.local.get(['supabaseUrl', 'supabaseKey'], async (creds) => {
-    const url = creds.supabaseUrl;
-    const key = creds.supabaseKey;
+    let url = creds.supabaseUrl ? creds.supabaseUrl.trim() : '';
+    const key = creds.supabaseKey ? creds.supabaseKey.trim() : '';
 
     if (!url || !key) {
       showStatus('Configure your Supabase credentials in settings first.', 'error');
       document.getElementById('tab-settings').click();
       return;
     }
+
+    // Robust cleanup of the URL in case it is stale:
+    url = url.replace(/\/rest\/v1\/?$/, '');
+    url = url.replace(/\/+$/, '');
 
     const company = document.getElementById('company').value.trim();
     const position = document.getElementById('position').value.trim();
